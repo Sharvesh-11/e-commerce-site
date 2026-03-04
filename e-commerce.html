@@ -1,0 +1,1189 @@
+<!doctype html>
+<html lang="en" class="h-full scroll-smooth">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CraftedWithLove - Premium Handmade Artisan Goods</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&amp;family=Lora:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    
+    .font-serif { font-family: 'Merriweather', serif; }
+    .font-lora { font-family: 'Lora', serif; }
+    .font-sans { font-family: 'Poppins', sans-serif; }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    @keyframes shimmer {
+      0%, 100% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+    
+    .animate-fadeInUp { animation: fadeInUp 0.6s ease-out forwards; }
+    .animate-slideInLeft { animation: slideInLeft 0.6s ease-out forwards; }
+    .animate-slideInRight { animation: slideInRight 0.6s ease-out forwards; }
+    .animate-scaleIn { animation: scaleIn 0.5s ease-out forwards; }
+    
+    .stagger-1 { animation-delay: 0.1s; opacity: 0; }
+    .stagger-2 { animation-delay: 0.2s; opacity: 0; }
+    .stagger-3 { animation-delay: 0.3s; opacity: 0; }
+    .stagger-4 { animation-delay: 0.4s; opacity: 0; }
+    
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    
+    .product-card:hover .product-img {
+      transform: scale(1.08);
+    }
+    
+    .product-card {
+      overflow: hidden;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    }
+    
+    .btn-primary {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+    
+    .carousel-container {
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+    }
+    
+    .carousel-item {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+    
+    .form-input, .form-select, .form-textarea {
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(191, 144, 99, 0.1);
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      animation: scaleIn 0.3s ease;
+    }
+    
+    .modal {
+      animation: fadeInUp 0.4s ease-out;
+    }
+    
+    .modal-backdrop {
+      animation: fadeInUp 0.4s ease-out;
+    }
+    
+    .success-check {
+      animation: scaleIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    @media (max-width: 768px) {
+      .hide-mobile { display: none; }
+    }
+    
+    @media (min-width: 769px) {
+      .show-mobile { display: none; }
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-sans">
+  <div id="app" class="h-full w-full overflow-auto" style="background: linear-gradient(to bottom, #fefbf6 0%, #f5eee6 100%);"><!-- Navigation -->
+   <nav class="sticky top-0 z-40 backdrop-blur-md border-b" style="background: rgba(254, 251, 246, 0.95); border-color: rgba(191, 144, 99, 0.2);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+     <div class="flex items-center justify-between"><button onclick="navigateTo('home')" class="flex items-center gap-3 group cursor-pointer">
+       <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #bf9063 0%, #a6754d 100%);"><span class="text-white text-lg font-bold">♦</span>
+       </div><span id="nav-store-name" class="font-lora text-xl font-bold hidden sm:inline" style="color: #5d3e1f;">CraftedWithLove</span> </button> <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-8 ml-auto"><button onclick="navigateTo('home')" class="font-sans font-medium transition-colors" style="color: #6b5445;">Home</button> <button onclick="navigateTo('shop')" class="font-sans font-medium transition-colors" style="color: #6b5445;">Shop</button> <button onclick="navigateTo('contact')" class="font-sans font-medium transition-colors" style="color: #6b5445;">Contact</button>
+      </div><!-- Cart Button --> <button onclick="navigateTo('cart')" class="relative p-2 ml-4 md:ml-8 transition-transform hover:scale-110">
+       <svg class="w-6 h-6" fill="none" stroke="#5d3e1f" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+       </svg>
+       <div id="cart-count" class="cart-count" style="background: #d4845b; color: white; display: none;">
+        0
+       </div></button> <!-- Mobile Menu Button --> <button onclick="toggleMobileMenu()" class="md:hidden p-2">
+       <svg class="w-6 h-6" fill="none" stroke="#5d3e1f" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+       </svg></button>
+     </div><!-- Mobile Menu -->
+     <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t pt-4" style="border-color: rgba(191, 144, 99, 0.2);">
+      <div class="flex flex-col gap-4"><button onclick="navigateTo('home'); toggleMobileMenu();" class="text-left font-medium" style="color: #6b5445;">Home</button> <button onclick="navigateTo('shop'); toggleMobileMenu();" class="text-left font-medium" style="color: #6b5445;">Shop</button> <button onclick="navigateTo('contact'); toggleMobileMenu();" class="text-left font-medium" style="color: #6b5445;">Contact</button>
+      </div>
+     </div>
+    </div>
+   </nav><!-- Home Page --> <!-- HOME PAGE -->
+   <section id="page-home" class="page min-h-[100%]"><!-- Hero Section -->
+    <div class="relative overflow-hidden pt-12 md:pt-20 pb-20" style="background: linear-gradient(135deg, rgba(217, 170, 109, 0.15) 0%, rgba(165, 117, 77, 0.1) 100%);">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center py-12"><!-- Hero Content -->
+       <div class="animate-slideInLeft"><span class="badge" style="background: rgba(217, 170, 109, 0.2); color: #8b5a2b;">✨ Artisan Crafted</span>
+        <h1 id="hero-title" class="font-lora text-5xl md:text-6xl font-bold leading-tight mt-6 mb-6" style="color: #3d2817;">CraftedWithLove</h1>
+        <p id="hero-tagline" class="text-lg md:text-xl leading-relaxed mb-8" style="color: #6b5445;">Discover handmade treasures made with passion, care, and timeless craftsmanship. Each piece is uniquely yours.</p>
+        <div class="flex flex-col sm:flex-row gap-4"><button onclick="navigateTo('shop')" class="btn-primary px-8 py-4 rounded-lg font-semibold" style="background: linear-gradient(135deg, #d9aa6d 0%, #bf9063 100%); color: white;"> Explore Shop → </button> <button onclick="document.getElementById('featured').scrollIntoView({behavior: 'smooth'})" class="btn-primary px-8 py-4 rounded-lg font-semibold border-2" style="background: transparent; color: #8b5a2b; border-color: #d9aa6d;"> View Featured </button>
+        </div>
+       </div><!-- Hero Image -->
+       <div class="hidden md:block animate-slideInRight">
+        <div class="relative">
+         <div class="absolute inset-0 rounded-2xl" style="background: linear-gradient(135deg, rgba(217, 170, 109, 0.3) 0%, rgba(165, 117, 77, 0.2) 100%); transform: rotate(3deg);"></div>
+         <div class="relative rounded-2xl overflow-hidden shadow-2xl" style="aspect-ratio: 4/5;">
+          <svg class="w-full h-full" viewbox="0 0 400 500" fill="none"><defs>
+            <lineargradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+             <stop offset="0%" style="stop-color:#f5deb3;stop-opacity:1" />
+             <stop offset="100%" style="stop-color:#daa520;stop-opacity:1" />
+            </lineargradient>
+           </defs> <rect width="400" height="500" fill="url(#grad1)" /> <!-- Decorative pattern --> <circle cx="200" cy="150" r="80" fill="rgba(191,144,99,0.2)" /> <circle cx="150" cy="350" r="60" fill="rgba(139,90,43,0.2)" /> <circle cx="300" cy="380" r="70" fill="rgba(217,170,109,0.2)" /> <text x="200" y="250" font-family="serif" font-size="48" fill="#8b5a2b" text-anchor="middle" opacity="0.4">
+            Handmade
+           </text>
+          </svg>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- Featured Products -->
+    <div id="featured" class="py-20" style="background: #fefbf6;">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16 animate-fadeInUp">
+       <h2 class="font-lora text-4xl md:text-5xl font-bold mb-4" style="color: #3d2817;">Featured Favorites</h2>
+       <p class="text-lg" style="color: #6b5445;">Our most beloved handmade creations</p>
+      </div>
+      <div id="featured-products" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"><!-- Featured products loaded dynamically -->
+      </div>
+     </div>
+    </div><!-- Why Choose Us -->
+    <div class="py-20" style="background: linear-gradient(135deg, rgba(139,90,43,0.08) 0%, rgba(165,117,77,0.08) 100%);">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-3 gap-8">
+       <div class="text-center p-8 animate-fadeInUp stagger-1">
+        <div class="w-14 h-14 rounded-full mx-auto mb-6 flex items-center justify-center" style="background: rgba(217, 170, 109, 0.2);"><span style="font-size: 28px;">✋</span>
+        </div>
+        <h3 class="font-lora text-xl font-bold mb-3" style="color: #3d2817;">Handmade Quality</h3>
+        <p style="color: #6b5445;">Each piece is carefully crafted by skilled artisans using traditional techniques and premium materials.</p>
+       </div>
+       <div class="text-center p-8 animate-fadeInUp stagger-2">
+        <div class="w-14 h-14 rounded-full mx-auto mb-6 flex items-center justify-center" style="background: rgba(217, 170, 109, 0.2);"><span style="font-size: 28px;">🌍</span>
+        </div>
+        <h3 class="font-lora text-xl font-bold mb-3" style="color: #3d2817;">Sustainable &amp; Ethical</h3>
+        <p style="color: #6b5445;">We're committed to eco-friendly practices and supporting fair trade for all our artisan partners.</p>
+       </div>
+       <div class="text-center p-8 animate-fadeInUp stagger-3">
+        <div class="w-14 h-14 rounded-full mx-auto mb-6 flex items-center justify-center" style="background: rgba(217, 170, 109, 0.2);"><span style="font-size: 28px;">❤️</span>
+        </div>
+        <h3 class="font-lora text-xl font-bold mb-3" style="color: #3d2817;">100% Guarantee</h3>
+        <p style="color: #6b5445;">Love what you buy or your money back. We stand behind every product we create.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- SHOP PAGE -->
+   <section id="page-shop" class="page hidden min-h-[100%]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+     <div class="text-center mb-12 animate-fadeInUp">
+      <h1 class="font-lora text-4xl md:text-5xl font-bold mb-4" style="color: #3d2817;">Our Shop</h1>
+      <p class="text-lg" style="color: #6b5445;">Explore our complete collection of handmade artisan goods</p>
+     </div><!-- Category Filter -->
+     <div class="flex flex-wrap justify-center gap-3 mb-12 animate-fadeInUp"><button onclick="filterProducts('all')" class="filter-btn px-6 py-2 rounded-full font-medium transition-all active" data-category="all" style="background: #d9aa6d; color: white;">All</button> <button onclick="filterProducts('jewelry')" class="filter-btn px-6 py-2 rounded-full font-medium transition-all" data-category="jewelry" style="background: #f5eee6; color: #6b5445; border: 2px solid #e8ddd4;">Jewelry</button> <button onclick="filterProducts('candles')" class="filter-btn px-6 py-2 rounded-full font-medium transition-all" data-category="candles" style="background: #f5eee6; color: #6b5445; border: 2px solid #e8ddd4;">Candles</button> <button onclick="filterProducts('pottery')" class="filter-btn px-6 py-2 rounded-full font-medium transition-all" data-category="pottery" style="background: #f5eee6; color: #6b5445; border: 2px solid #e8ddd4;">Pottery</button> <button onclick="filterProducts('soaps')" class="filter-btn px-6 py-2 rounded-full font-medium transition-all" data-category="soaps" style="background: #f5eee6; color: #6b5445; border: 2px solid #e8ddd4;">Soaps</button> <button onclick="filterProducts('notebooks')" class="filter-btn px-6 py-2 rounded-full font-medium transition-all" data-category="notebooks" style="background: #f5eee6; color: #6b5445; border: 2px solid #e8ddd4;">Notebooks</button>
+     </div><!-- Products Grid -->
+     <div id="products-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"><!-- Products loaded dynamically -->
+     </div>
+    </div>
+   </section><!-- PRODUCT DETAIL PAGE -->
+   <section id="page-product" class="page hidden min-h-[100%]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12"><button onclick="navigateTo('shop')" class="flex items-center gap-2 mb-8 font-medium hover:gap-4 transition-all" style="color: #6b5445;">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg> Back to Shop </button>
+     <div id="product-detail" class="grid md:grid-cols-2 gap-8"><!-- Product detail loaded dynamically -->
+     </div>
+    </div>
+   </section><!-- CART PAGE -->
+   <section id="page-cart" class="page hidden min-h-[100%]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+     <h1 class="font-lora text-4xl font-bold mb-8" style="color: #3d2817;">Shopping Cart</h1>
+     <div class="grid md:grid-cols-3 gap-8"><!-- Cart Items -->
+      <div class="md:col-span-2">
+       <div id="cart-items" class="space-y-6"><!-- Cart items loaded dynamically -->
+       </div>
+       <div id="empty-cart" class="text-center py-16">
+        <svg class="w-24 h-24 mx-auto mb-6 opacity-30" fill="none" stroke="#8b5a2b" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg>
+        <h2 class="font-lora text-2xl font-bold mb-4" style="color: #3d2817;">Your cart is empty</h2>
+        <p class="mb-6" style="color: #6b5445;">Explore our collection to find something special</p><button onclick="navigateTo('shop')" class="btn-primary px-8 py-3 rounded-lg font-semibold" style="background: #d9aa6d; color: white;">Continue Shopping</button>
+       </div>
+      </div><!-- Cart Summary -->
+      <div class="rounded-lg p-6 h-fit" style="background: #f5eee6;">
+       <h3 class="font-lora text-xl font-bold mb-6" style="color: #3d2817;">Order Summary</h3>
+       <div class="space-y-3 mb-6 pb-6 border-b" style="border-color: #e8ddd4;">
+        <div class="flex justify-between" style="color: #6b5445;"><span>Subtotal</span> <span id="cart-subtotal">$0.00</span>
+        </div>
+        <div class="flex justify-between" style="color: #6b5445;"><span>Shipping</span> <span id="cart-shipping">$0.00</span>
+        </div>
+       </div>
+       <div class="flex justify-between mb-6"><span class="font-lora text-lg font-bold" style="color: #3d2817;">Total</span> <span class="font-lora text-2xl font-bold" style="color: #d4845b;" id="cart-total">$0.00</span>
+       </div><button onclick="navigateTo('checkout')" class="w-full btn-primary py-3 rounded-lg font-semibold mb-3" style="background: linear-gradient(135deg, #d9aa6d 0%, #bf9063 100%); color: white;">Proceed to Checkout</button> <button onclick="navigateTo('shop')" class="w-full py-3 rounded-lg font-semibold" style="background: transparent; color: #6b5445; border: 2px solid #e8ddd4;">Continue Shopping</button>
+      </div>
+     </div>
+    </div>
+   </section><!-- CHECKOUT PAGE -->
+   <section id="page-checkout" class="page hidden min-h-[100%]">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+     <h1 class="font-lora text-4xl font-bold mb-8" style="color: #3d2817;">Checkout</h1>
+     <div class="grid md:grid-cols-3 gap-8"><!-- Checkout Form -->
+      <div class="md:col-span-2">
+       <form id="checkout-form" class="space-y-6"><!-- Contact Information -->
+        <div class="rounded-lg p-6" style="background: #f5eee6;">
+         <h3 class="font-lora text-lg font-bold mb-4" style="color: #3d2817;">Contact Information</h3>
+         <div class="grid sm:grid-cols-2 gap-4">
+          <div><label class="block font-medium mb-2" style="color: #3d2817;">Full Name *</label> <input type="text" id="checkout-name" required class="form-input w-full px-4 py-3 rounded-lg" style="background: white; border-color: #e8ddd4;" placeholder="John Doe">
+          </div>
+          <div><label class="block font-medium mb-2" style="color: #3d2817;">Email *</label> <input type="email" id="checkout-email" required class="form-input w-full px-4 py-3 rounded-lg" style="background: white; border-color: #e8ddd4;" placeholder="john@example.com">
+          </div>
+         </div>
+         <div class="mt-4"><label class="block font-medium mb-2" style="color: #3d2817;">Phone *</label> <input type="tel" id="checkout-phone" required class="form-input w-full px-4 py-3 rounded-lg" style="background: white; border-color: #e8ddd4;" placeholder="+1 (555) 123-4567">
+         </div>
+        </div><!-- Shipping Address -->
+        <div class="rounded-lg p-6" style="background: #f5eee6;">
+         <h3 class="font-lora text-lg font-bold mb-4" style="color: #3d2817;">Shipping Address</h3>
+         <div class="space-y-4">
+          <div><label class="block font-medium mb-2" style="color: #3d2817;">Street Address *</label> <input type="text" id="checkout-address" required class="form-input w-full px-4 py-3 rounded-lg" style="background: white; border-color: #e8ddd4;" placeholder="123 Main St">
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+           <div><label class="block font-medium mb-2" style="color: #3d2817;">City *</label> <input type="text" id="checkout-city" required class="form-input w-full px-4 py-3 rounded-lg" style="background: white; border-color: #e8ddd4;" placeholder="New York">
+           </div>
+           <div><label class="block font-medium mb-2" style="color: #3d2817;">State/Province *</label> <input type="text" id="checkout-state" required class="form-input w-full px-4 py-3 rounded-lg" style="background: white; border-color: #e8ddd4;" placeholder="NY">
+           </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4">
+           <div><label class="block font-medium mb-2" style="color: #3d2817;">Zip Code *</label> <input type="text" id="checkout-zip" required class="form-input w-full px-4 py-3 rounded-lg" style="background: white; border-color: #e8ddd4;" placeholder="10001">
+           </div>
+           <div><label class="block font-medium mb-2" style="color: #3d2817;">Country *</label> <input type="text" id="checkout-country" required class="form-input w-full px-4 py-3 rounded-lg" style="background: white; border-color: #e8ddd4;" placeholder="United States">
+           </div>
+          </div>
+         </div>
+        </div><!-- Special Instructions -->
+        <div class="rounded-lg p-6" style="background: #f5eee6;">
+         <h3 class="font-lora text-lg font-bold mb-4" style="color: #3d2817;">Order Notes (Optional)</h3><textarea id="checkout-notes" rows="3" class="form-textarea w-full px-4 py-3 rounded-lg resize-none" style="background: white; border-color: #e8ddd4;" placeholder="Any special requests or instructions..."></textarea>
+        </div><button type="submit" id="checkout-submit-btn" class="w-full btn-primary py-4 rounded-lg font-semibold text-lg" style="background: linear-gradient(135deg, #d9aa6d 0%, #bf9063 100%); color: white;">Complete Order</button>
+       </form>
+       <div id="checkout-success" class="hidden text-center py-12">
+        <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center success-check" style="background: #d9aa6d;">
+         <svg class="w-10 h-10" fill="none" stroke="white" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+         </svg>
+        </div>
+        <h2 class="font-lora text-2xl font-bold mb-4" style="color: #3d2817;">Order Placed Successfully!</h2>
+        <p class="mb-6" style="color: #6b5445;">Thank you for your purchase. You'll receive a confirmation email shortly.</p><button onclick="navigateTo('shop')" class="btn-primary px-8 py-3 rounded-lg font-semibold" style="background: #d9aa6d; color: white;">Continue Shopping</button>
+       </div>
+      </div><!-- Order Summary Sidebar -->
+      <div class="rounded-lg p-6 h-fit" style="background: #f5eee6;">
+       <h3 class="font-lora text-lg font-bold mb-6" style="color: #3d2817;">Order Review</h3>
+       <div id="checkout-summary" class="space-y-4 mb-6 pb-6 border-b" style="border-color: #e8ddd4;"><!-- Summary items loaded dynamically -->
+       </div>
+       <div class="space-y-3 mb-6 pb-6 border-b" style="border-color: #e8ddd4;">
+        <div class="flex justify-between" style="color: #6b5445;"><span>Subtotal</span> <span id="checkout-subtotal">$0.00</span>
+        </div>
+        <div class="flex justify-between" style="color: #6b5445;"><span>Shipping</span> <span id="checkout-shipping">$8.00</span>
+        </div>
+       </div>
+       <div class="flex justify-between"><span class="font-lora font-bold" style="color: #3d2817;">Total</span> <span class="font-lora text-xl font-bold" style="color: #d4845b;" id="checkout-total">$0.00</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- CONTACT PAGE -->
+   <section id="page-contact" class="page hidden min-h-[100%]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+     <div class="text-center mb-16 animate-fadeInUp">
+      <h1 class="font-lora text-4xl md:text-5xl font-bold mb-4" style="color: #3d2817;">Get in Touch</h1>
+      <p class="text-lg" style="color: #6b5445;">We'd love to hear from you. Send us a message!</p>
+     </div>
+     <div class="grid md:grid-cols-2 gap-12"><!-- Contact Info -->
+      <div class="space-y-6">
+       <div class="rounded-lg p-6 animate-fadeInUp stagger-1" style="background: #f5eee6;">
+        <div class="flex items-start gap-4">
+         <div class="w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center" style="background: #d9aa6d;"><span style="font-size: 24px;">✉️</span>
+         </div>
+         <div>
+          <h3 class="font-lora text-lg font-bold mb-1" style="color: #3d2817;">Email</h3>
+          <p id="contact-email-display" style="color: #6b5445;">hello@craftedwithlove.com</p>
+         </div>
+        </div>
+       </div>
+       <div class="rounded-lg p-6 animate-fadeInUp stagger-2" style="background: #f5eee6;">
+        <div class="flex items-start gap-4">
+         <div class="w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center" style="background: #d9aa6d;"><span style="font-size: 24px;">📞</span>
+         </div>
+         <div>
+          <h3 class="font-lora text-lg font-bold mb-1" style="color: #3d2817;">Phone</h3>
+          <p id="contact-phone-display" style="color: #6b5445;">+1 (555) 123-4567</p>
+         </div>
+        </div>
+       </div>
+       <div class="rounded-lg p-6 animate-fadeInUp stagger-3" style="background: #f5eee6;">
+        <div class="flex items-start gap-4">
+         <div class="w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center" style="background: #d9aa6d;"><span style="font-size: 24px;">🕐</span>
+         </div>
+         <div>
+          <h3 class="font-lora text-lg font-bold mb-1" style="color: #3d2817;">Hours</h3>
+          <p style="color: #6b5445;">Mon - Fri: 9am - 6pm EST</p>
+          <p style="color: #6b5445;">Sat: 10am - 4pm EST</p>
+         </div>
+        </div>
+       </div>
+      </div><!-- Contact Form -->
+      <div class="rounded-lg p-8 animate-fadeInUp" style="background: #f5eee6;">
+       <h2 class="font-lora text-2xl font-bold mb-6" style="color: #3d2817;">Send a Message</h2>
+       <form id="contact-form" class="space-y-4">
+        <div><label for="contact-name" class="block font-medium mb-2" style="color: #3d2817;">Name *</label> <input type="text" id="contact-name" required class="form-input w-full px-4 py-3 rounded-lg" style="background: white; border-color: #e8ddd4;">
+        </div>
+        <div><label for="contact-email-input" class="block font-medium mb-2" style="color: #3d2817;">Email *</label> <input type="email" id="contact-email-input" required class="form-input w-full px-4 py-3 rounded-lg" style="background: white; border-color: #e8ddd4;">
+        </div>
+        <div><label for="contact-subject" class="block font-medium mb-2" style="color: #3d2817;">Subject *</label> <select id="contact-subject" required class="form-select w-full px-4 py-3 rounded-lg" style="background: white; border-color: #e8ddd4; color: #6b5445;"> <option value="">Select a topic</option> <option value="inquiry">General Inquiry</option> <option value="custom">Custom Order</option> <option value="wholesale">Wholesale</option> <option value="feedback">Feedback</option> <option value="other">Other</option> </select>
+        </div>
+        <div><label for="contact-message" class="block font-medium mb-2" style="color: #3d2817;">Message *</label> <textarea id="contact-message" required rows="4" class="form-textarea w-full px-4 py-3 rounded-lg resize-none" style="background: white; border-color: #e8ddd4;"></textarea>
+        </div><button type="submit" id="contact-submit-btn" class="w-full btn-primary py-3 rounded-lg font-semibold" style="background: #d9aa6d; color: white;">Send Message</button>
+       </form>
+       <div id="contact-success" class="hidden text-center py-8">
+        <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center success-check" style="background: #d9aa6d;">
+         <svg class="w-8 h-8" fill="none" stroke="white" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+         </svg>
+        </div>
+        <h3 class="font-lora text-xl font-bold mb-2" style="color: #3d2817;">Message Sent!</h3>
+        <p style="color: #6b5445;">We'll get back to you within 24 hours.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- FOOTER -->
+   <footer class="border-t py-12" style="background: #f5eee6; border-color: rgba(191, 144, 99, 0.2);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+     <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+      <div>
+       <div class="flex items-center gap-2 mb-4">
+        <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background: #d9aa6d;"><span class="text-white text-sm font-bold">♦</span>
+        </div><span id="footer-store-name" class="font-lora text-lg font-bold" style="color: #3d2817;">CraftedWithLove</span>
+       </div>
+       <p class="text-sm" style="color: #6b5445;">Handmade with love, delivered to your door.</p>
+      </div>
+      <div>
+       <h4 class="font-lora font-bold mb-4" style="color: #3d2817;">Quick Links</h4>
+       <div class="space-y-2"><button onclick="navigateTo('home')" class="block text-sm hover:underline" style="color: #6b5445;">Home</button> <button onclick="navigateTo('shop')" class="block text-sm hover:underline" style="color: #6b5445;">Shop</button> <button onclick="navigateTo('contact')" class="block text-sm hover:underline" style="color: #6b5445;">Contact</button>
+       </div>
+      </div>
+      <div>
+       <h4 class="font-lora font-bold mb-4" style="color: #3d2817;">Support</h4>
+       <div class="space-y-2">
+        <p class="text-sm" style="color: #6b5445;">hello@craftedwithlove.com</p>
+        <p class="text-sm" style="color: #6b5445;">+1 (555) 123-4567</p>
+       </div>
+      </div>
+      <div>
+       <h4 class="font-lora font-bold mb-4" style="color: #3d2817;">Follow Us</h4>
+       <div class="flex gap-3"><a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-110" style="background: #d9aa6d;"> <span style="color: white; font-size: 18px;">f</span> </a> <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-110" style="background: #d9aa6d;"> <span style="color: white; font-size: 18px;">📷</span> </a> <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-110" style="background: #d9aa6d;"> <span style="color: white; font-size: 16px;">𝕏</span> </a>
+       </div>
+      </div>
+     </div>
+     <div class="pt-8 border-t text-center text-sm" style="border-color: rgba(191, 144, 99, 0.2); color: #6b5445;">
+      © 2024 CraftedWithLove. All rights reserved. | Handmade with ♦ in the USA
+     </div>
+    </div>
+   </footer>
+  </div><!-- Products Page -->
+  <section id="page-products" class="page hidden">
+   <div class="max-w-6xl mx-auto px-6 py-12">
+    <div class="text-center mb-12">
+     <h1 class="font-display text-4xl font-bold mb-4" style="color: #4A3F35;">Our Collection</h1>
+     <p class="text-lg" style="color: #6B5D4D;">Handcrafted with care, made to last</p>
+    </div><!-- Category Filter -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12">
+     <button onclick="filterProducts('all')" class="filter-btn active px-6 py-2 rounded-full font-medium transition-all" data-category="all">All</button> <button onclick="filterProducts('leather')" class="filter-btn px-6 py-2 rounded-full font-medium transition-all" data-category="leather">Leather</button> <button onclick="filterProducts('ceramics')" class="filter-btn px-6 py-2 rounded-full font-medium transition-all" data-category="ceramics">Ceramics</button> <button onclick="filterProducts('textiles')" class="filter-btn px-6 py-2 rounded-full font-medium transition-all" data-category="textiles">Textiles</button> <button onclick="filterProducts('jewelry')" class="filter-btn px-6 py-2 rounded-full font-medium transition-all" data-category="jewelry">Jewelry</button>
+    </div>
+    <div id="products-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+     <!-- Products loaded dynamically -->
+    </div>
+   </div>
+  </section><!-- Product Detail Modal -->
+  <div id="product-modal" class="fixed inset-0 z-50 hidden">
+   <div class="absolute inset-0 bg-black/50" onclick="closeProductModal()"></div>
+   <div class="absolute inset-4 md:inset-8 lg:inset-16 overflow-auto rounded-2xl" style="background: #FDF8F3;">
+    <button onclick="closeProductModal()" class="absolute top-4 right-4 p-2 rounded-full" style="background: #F5EBE0;">
+     <svg class="w-6 h-6" fill="none" stroke="#6B5D4D" viewbox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+     </svg></button>
+    <div id="product-modal-content" class="p-8">
+     <!-- Product detail loaded dynamically -->
+    </div>
+   </div>
+  </div><!-- Order Form Page -->
+  <section id="page-order" class="page hidden">
+   <div class="max-w-2xl mx-auto px-6 py-12">
+    <button onclick="navigateTo('products')" class="flex items-center gap-2 mb-8 font-medium" style="color: #6B5D4D;">
+     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+     </svg> Back to Products </button>
+    <div class="rounded-2xl p-8 shadow-lg" style="background: #F5EBE0;">
+     <h1 class="font-display text-3xl font-bold mb-2" style="color: #4A3F35;">Place Your Order</h1>
+     <div id="order-product-summary" class="mb-8 pb-6 border-b" style="border-color: #E8DDD4;">
+      <!-- Product summary loaded dynamically -->
+     </div>
+     <form id="order-form" class="space-y-6">
+      <div>
+       <label class="block font-medium mb-2" style="color: #4A3F35;">Quantity</label>
+       <div class="flex items-center gap-4">
+        <button type="button" onclick="updateQuantity(-1)" class="w-10 h-10 rounded-full flex items-center justify-center" style="background: #8B7355; color: #FDF8F3;">−</button> <span id="order-quantity" class="text-xl font-semibold" style="color: #4A3F35;">1</span> <button type="button" onclick="updateQuantity(1)" class="w-10 h-10 rounded-full flex items-center justify-center" style="background: #8B7355; color: #FDF8F3;">+</button>
+       </div>
+      </div>
+      <div>
+       <label for="customer-name" class="block font-medium mb-2" style="color: #4A3F35;">Full Name</label> <input type="text" id="customer-name" required class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none transition-colors" style="background: #FDF8F3; border-color: #E8DDD4; color: #4A3F35;" placeholder="Your full name">
+      </div>
+      <div>
+       <label for="customer-email" class="block font-medium mb-2" style="color: #4A3F35;">Email Address</label> <input type="email" id="customer-email" required class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none transition-colors" style="background: #FDF8F3; border-color: #E8DDD4; color: #4A3F35;" placeholder="your@email.com">
+      </div>
+      <div>
+       <label for="customer-address" class="block font-medium mb-2" style="color: #4A3F35;">Shipping Address</label> <textarea id="customer-address" required rows="3" class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none transition-colors resize-none" style="background: #FDF8F3; border-color: #E8DDD4; color: #4A3F35;" placeholder="Street address, city, state, ZIP"></textarea>
+      </div>
+      <div>
+       <label for="order-notes" class="block font-medium mb-2" style="color: #4A3F35;">Special Instructions (Optional)</label> <textarea id="order-notes" rows="2" class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none transition-colors resize-none" style="background: #FDF8F3; border-color: #E8DDD4; color: #4A3F35;" placeholder="Any special requests or notes"></textarea>
+      </div>
+      <div class="pt-4 border-t" style="border-color: #E8DDD4;">
+       <div class="flex justify-between items-center mb-6">
+        <span class="text-lg font-medium" style="color: #6B5D4D;">Total:</span> <span id="order-total" class="text-2xl font-bold" style="color: #4A3F35;">$0.00</span>
+       </div><button type="submit" id="submit-order-btn" class="w-full btn-primary py-4 rounded-full font-semibold text-lg" style="background: #8B7355; color: #FDF8F3;"> Place Order </button>
+      </div>
+     </form>
+     <div id="order-success" class="hidden text-center py-12">
+      <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center" style="background: #8B7355;">
+       <svg class="w-10 h-10" fill="none" stroke="#FDF8F3" viewbox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+       </svg>
+      </div>
+      <h2 class="font-display text-2xl font-bold mb-4" style="color: #4A3F35;">Order Placed Successfully!</h2>
+      <p class="mb-6" style="color: #6B5D4D;">Thank you for your order. We'll send you a confirmation email shortly.</p><button onclick="navigateTo('orders')" class="btn-primary px-8 py-3 rounded-full font-semibold" style="background: #8B7355; color: #FDF8F3;"> View My Orders </button>
+     </div>
+    </div>
+   </div>
+  </section><!-- Orders Page -->
+  <section id="page-orders" class="page hidden">
+   <div class="max-w-4xl mx-auto px-6 py-12">
+    <h1 class="font-display text-4xl font-bold mb-8 text-center" style="color: #4A3F35;">My Orders</h1>
+    <div id="orders-list" class="space-y-6">
+     <!-- Orders loaded dynamically -->
+    </div>
+    <div id="no-orders" class="hidden text-center py-16">
+     <div class="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center" style="background: #F5EBE0;">
+      <svg class="w-12 h-12" fill="none" stroke="#8B7355" viewbox="0 0 24 24">
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+      </svg>
+     </div>
+     <h2 class="font-display text-2xl font-bold mb-4" style="color: #4A3F35;">No Orders Yet</h2>
+     <p class="mb-6" style="color: #6B5D4D;">Start shopping to see your orders here!</p><button onclick="navigateTo('products')" class="btn-primary px-8 py-3 rounded-full font-semibold" style="background: #8B7355; color: #FDF8F3;"> Browse Products </button>
+    </div>
+   </div>
+  </section><!-- Contact Page -->
+  <section id="page-contact" class="page hidden">
+   <div class="max-w-4xl mx-auto px-6 py-12">
+    <div class="text-center mb-12">
+     <h1 class="font-display text-4xl font-bold mb-4" style="color: #4A3F35;">Get in Touch</h1>
+     <p class="text-lg" style="color: #6B5D4D;">We'd love to hear from you. Send us a message!</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+     <!-- Contact Info -->
+     <div class="space-y-6">
+      <div class="rounded-2xl p-6" style="background: #F5EBE0;">
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center" style="background: #8B7355;">
+         <svg class="w-6 h-6" fill="none" stroke="#FDF8F3" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-display text-lg font-semibold mb-1" style="color: #4A3F35;">Email Us</h3>
+         <p id="contact-email-display" style="color: #6B5D4D;">hello@artisanstore.com</p>
+        </div>
+       </div>
+      </div>
+      <div class="rounded-2xl p-6" style="background: #F5EBE0;">
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center" style="background: #8B7355;">
+         <svg class="w-6 h-6" fill="none" stroke="#FDF8F3" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-display text-lg font-semibold mb-1" style="color: #4A3F35;">Call Us</h3>
+         <p id="contact-phone-display" style="color: #6B5D4D;">+1 (555) 123-4567</p>
+        </div>
+       </div>
+      </div>
+      <div class="rounded-2xl p-6" style="background: #F5EBE0;">
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center" style="background: #8B7355;">
+         <svg class="w-6 h-6" fill="none" stroke="#FDF8F3" viewbox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-display text-lg font-semibold mb-1" style="color: #4A3F35;">Business Hours</h3>
+         <p style="color: #6B5D4D;">Mon - Fri: 9am - 6pm EST</p>
+         <p style="color: #6B5D4D;">Sat: 10am - 4pm EST</p>
+        </div>
+       </div>
+      </div>
+     </div><!-- Contact Form -->
+     <div class="rounded-2xl p-8" style="background: #F5EBE0;">
+      <h2 class="font-display text-xl font-semibold mb-6" style="color: #4A3F35;">Send a Message</h2>
+      <form id="contact-form" class="space-y-4">
+       <div>
+        <label for="contact-name" class="block font-medium mb-2" style="color: #4A3F35;">Your Name</label> <input type="text" id="contact-name" required class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none" style="background: #FDF8F3; border-color: #E8DDD4; color: #4A3F35;">
+       </div>
+       <div>
+        <label for="contact-email-input" class="block font-medium mb-2" style="color: #4A3F35;">Email</label> <input type="email" id="contact-email-input" required class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none" style="background: #FDF8F3; border-color: #E8DDD4; color: #4A3F35;">
+       </div>
+       <div>
+        <label for="contact-subject" class="block font-medium mb-2" style="color: #4A3F35;">Subject</label> <select id="contact-subject" required class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none" style="background: #FDF8F3; border-color: #E8DDD4; color: #4A3F35;"> <option value="">Select a topic</option> <option value="order">Order Inquiry</option> <option value="product">Product Question</option> <option value="custom">Custom Order Request</option> <option value="other">Other</option> </select>
+       </div>
+       <div>
+        <label for="contact-message" class="block font-medium mb-2" style="color: #4A3F35;">Message</label> <textarea id="contact-message" required rows="4" class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none resize-none" style="background: #FDF8F3; border-color: #E8DDD4; color: #4A3F35;"></textarea>
+       </div><button type="submit" id="contact-submit-btn" class="w-full btn-primary py-4 rounded-full font-semibold" style="background: #8B7355; color: #FDF8F3;"> Send Message </button>
+      </form>
+      <div id="contact-success" class="hidden text-center py-8">
+       <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style="background: #8B7355;">
+        <svg class="w-8 h-8" fill="none" stroke="#FDF8F3" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+       </div>
+       <h3 class="font-display text-xl font-bold mb-2" style="color: #4A3F35;">Message Sent!</h3>
+       <p style="color: #6B5D4D;">We'll get back to you within 24 hours.</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="border-t py-12" style="background: #F5EBE0; border-color: #E8DDD4;">
+   <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-8 mb-8">
+     <div>
+      <div class="flex items-center gap-2 mb-4">
+       <svg class="w-6 h-6" viewbox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="18" stroke="#8B7355" stroke-width="2" /> <path d="M12 20c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8" stroke="#8B7355" stroke-width="2" stroke-linecap="round" /> <circle cx="20" cy="20" r="3" fill="#8B7355" />
+       </svg><span id="footer-store-name" class="font-display text-lg font-semibold" style="color: #4A3F35;">Artisan &amp; Co.</span>
+      </div>
+      <p class="text-sm" style="color: #6B5D4D;">Handcrafted with love, delivered to your door.</p>
+     </div>
+     <div>
+      <h4 class="font-display font-semibold mb-4" style="color: #4A3F35;">Quick Links</h4>
+      <div class="space-y-2">
+       <button onclick="navigateTo('home')" class="block text-sm hover:underline" style="color: #6B5D4D;">Home</button> <button onclick="navigateTo('products')" class="block text-sm hover:underline" style="color: #6B5D4D;">Products</button> <button onclick="navigateTo('contact')" class="block text-sm hover:underline" style="color: #6B5D4D;">Contact</button>
+      </div>
+     </div>
+     <div>
+      <h4 class="font-display font-semibold mb-4" style="color: #4A3F35;">Follow Us</h4>
+      <div class="flex gap-4">
+       <span class="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer" style="background: #8B7355;">
+        <svg class="w-5 h-5" fill="#FDF8F3" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></span> <span class="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer" style="background: #8B7355;">
+        <svg class="w-5 h-5" fill="#FDF8F3" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+        </svg></span> <span class="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer" style="background: #8B7355;">
+        <svg class="w-5 h-5" fill="#FDF8F3" viewbox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z" />
+        </svg></span>
+      </div>
+     </div>
+    </div>
+    <div class="pt-8 border-t text-center text-sm" style="border-color: #E8DDD4; color: #6B5D4D;">
+     © 2024 Artisan &amp; Co. All rights reserved.
+    </div>
+   </div>
+  </footer>
+  <script>
+    // ============ PRODUCT DATA ============
+    const products = [
+      {
+        id: 'prod-1',
+        name: 'Hand-Stitched Leather Journal',
+        price: 68,
+        category: 'leather',
+        description: 'A beautifully crafted leather journal with hand-stitched binding. Perfect for sketching, writing, or keeping your thoughts organized.',
+        features: ['Genuine full-grain leather', 'Hand-stitched spine', '120 pages of acid-free paper', 'Ribbon bookmark included'],
+        icon: `<svg class="w-full h-full" viewBox="0 0 100 100" fill="none"><rect x="20" y="10" width="60" height="80" rx="4" fill="#E8DDD4" stroke="#8B7355" stroke-width="2"/><path d="M30 20h40M30 30h40M30 40h30M30 50h35" stroke="#8B7355" stroke-width="2" stroke-linecap="round"/><rect x="22" y="10" width="8" height="80" fill="#8B7355"/></svg>`
+      },
+      {
+        id: 'prod-2',
+        name: 'Artisan Ceramic Mug Set',
+        price: 54,
+        category: 'ceramics',
+        description: 'Set of 2 hand-thrown ceramic mugs with a unique glaze finish. Each piece is one-of-a-kind.',
+        features: ['Hand-thrown stoneware', 'Food-safe glaze', 'Dishwasher & microwave safe', '12oz capacity each'],
+        icon: `<svg class="w-full h-full" viewBox="0 0 100 100" fill="none"><ellipse cx="45" cy="75" rx="25" ry="8" fill="#E8DDD4"/><path d="M20 35c0-8 11-15 25-15s25 7 25 15v40c0 8-11 15-25 15s-25-7-25-15V35z" fill="#F5EBE0" stroke="#8B7355" stroke-width="2"/><path d="M70 40c8 0 15 5 15 12s-7 12-15 12" stroke="#8B7355" stroke-width="2"/><ellipse cx="45" cy="35" rx="25" ry="8" fill="#E8DDD4" stroke="#8B7355" stroke-width="2"/></svg>`
+      },
+      {
+        id: 'prod-3',
+        name: 'Woven Cotton Throw Blanket',
+        price: 120,
+        category: 'textiles',
+        description: 'Luxuriously soft hand-woven cotton throw blanket with traditional geometric patterns.',
+        features: ['100% organic cotton', 'Hand-woven on traditional loom', '50" x 60" size', 'Machine washable'],
+        icon: `<svg class="w-full h-full" viewBox="0 0 100 100" fill="none"><rect x="15" y="15" width="70" height="70" rx="4" fill="#F5EBE0" stroke="#8B7355" stroke-width="2"/><path d="M25 25h50M25 35h50M25 45h50M25 55h50M25 65h50M25 75h50" stroke="#8B7355" stroke-width="1.5" stroke-dasharray="4 4"/><path d="M35 15v70M50 15v70M65 15v70" stroke="#8B7355" stroke-width="1.5" stroke-dasharray="4 4"/></svg>`
+      },
+      {
+        id: 'prod-4',
+        name: 'Hammered Silver Pendant',
+        price: 85,
+        category: 'jewelry',
+        description: 'Elegant hand-hammered sterling silver pendant on a delicate chain. A timeless piece.',
+        features: ['925 sterling silver', 'Hand-hammered finish', '18" chain length', 'Gift box included'],
+        icon: `<svg class="w-full h-full" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="55" r="25" fill="#F5EBE0" stroke="#8B7355" stroke-width="2"/><circle cx="50" cy="55" r="18" stroke="#8B7355" stroke-width="1.5" stroke-dasharray="3 3"/><path d="M50 30V15M45 18l5-5 5 5" stroke="#8B7355" stroke-width="2" stroke-linecap="round"/><ellipse cx="50" cy="55" rx="8" ry="10" fill="#E8DDD4"/></svg>`
+      },
+      {
+        id: 'prod-5',
+        name: 'Leather Messenger Bag',
+        price: 195,
+        category: 'leather',
+        description: 'Handcrafted leather messenger bag with brass hardware. Perfect for work or travel.',
+        features: ['Full-grain vegetable-tanned leather', 'Solid brass hardware', 'Adjustable shoulder strap', 'Fits 15" laptop'],
+        icon: `<svg class="w-full h-full" viewBox="0 0 100 100" fill="none"><rect x="15" y="30" width="70" height="50" rx="4" fill="#F5EBE0" stroke="#8B7355" stroke-width="2"/><path d="M30 30V20a20 20 0 0140 0v10" stroke="#8B7355" stroke-width="2"/><rect x="40" y="45" width="20" height="15" rx="2" fill="#E8DDD4" stroke="#8B7355" stroke-width="2"/><circle cx="50" cy="52" r="3" fill="#8B7355"/></svg>`
+      },
+      {
+        id: 'prod-6',
+        name: 'Ceramic Planter Set',
+        price: 78,
+        category: 'ceramics',
+        description: 'Set of 3 hand-painted ceramic planters in graduating sizes. Perfect for succulents.',
+        features: ['Hand-painted designs', 'Drainage holes included', '3 sizes: small, medium, large', 'Weather-resistant finish'],
+        icon: `<svg class="w-full h-full" viewBox="0 0 100 100" fill="none"><path d="M20 85h15V50l-8-15h-7l8 15v35z" fill="#F5EBE0" stroke="#8B7355" stroke-width="2"/><path d="M40 85h20V40l-10-20h-10l10 20v45z" fill="#F5EBE0" stroke="#8B7355" stroke-width="2"/><path d="M65 85h20V55l-10-15h-10l10 15v30z" fill="#F5EBE0" stroke="#8B7355" stroke-width="2"/><ellipse cx="27" cy="42" rx="6" ry="4" fill="#8B7355"/><ellipse cx="50" cy="32" rx="8" ry="5" fill="#8B7355"/><ellipse cx="75" cy="47" rx="6" ry="4" fill="#8B7355"/></svg>`
+      },
+      {
+        id: 'prod-7',
+        name: 'Macramé Wall Hanging',
+        price: 92,
+        category: 'textiles',
+        description: 'Intricate hand-knotted macramé wall hanging. A stunning bohemian accent piece.',
+        features: ['100% natural cotton cord', 'Hand-knotted design', '24" wide x 36" long', 'Wooden dowel included'],
+        icon: `<svg class="w-full h-full" viewBox="0 0 100 100" fill="none"><rect x="25" y="15" width="50" height="6" rx="2" fill="#8B7355"/><path d="M30 21v10M40 21v15M50 21v20M60 21v15M70 21v10" stroke="#E8DDD4" stroke-width="3"/><path d="M30 31c5 10 10 15 20 20M70 31c-5 10-10 15-20 20" stroke="#E8DDD4" stroke-width="3"/><path d="M35 45v25M45 50v25M55 50v25M65 45v25" stroke="#E8DDD4" stroke-width="2"/><circle cx="35" cy="72" r="3" fill="#8B7355"/><circle cx="45" cy="77" r="3" fill="#8B7355"/><circle cx="55" cy="77" r="3" fill="#8B7355"/><circle cx="65" cy="72" r="3" fill="#8B7355"/></svg>`
+      },
+      {
+        id: 'prod-8',
+        name: 'Beaded Bracelet Collection',
+        price: 45,
+        category: 'jewelry',
+        description: 'Set of 3 hand-strung beaded bracelets with semi-precious stones. Stackable style.',
+        features: ['Natural semi-precious stones', 'Elastic stretch band', 'One size fits most', 'Set of 3 bracelets'],
+        icon: `<svg class="w-full h-full" viewBox="0 0 100 100" fill="none"><ellipse cx="50" cy="50" rx="35" ry="15" fill="none" stroke="#8B7355" stroke-width="2"/><ellipse cx="50" cy="42" rx="30" ry="12" fill="none" stroke="#8B7355" stroke-width="2"/><ellipse cx="50" cy="58" rx="30" ry="12" fill="none" stroke="#8B7355" stroke-width="2"/><circle cx="20" cy="50" r="4" fill="#E8DDD4" stroke="#8B7355"/><circle cx="80" cy="50" r="4" fill="#E8DDD4" stroke="#8B7355"/><circle cx="25" cy="42" r="3" fill="#8B7355"/><circle cx="75" cy="42" r="3" fill="#8B7355"/><circle cx="25" cy="58" r="3" fill="#8B7355"/><circle cx="75" cy="58" r="3" fill="#8B7355"/></svg>`
+      },
+      {
+        id: 'prod-9',
+        name: 'Leather Card Wallet',
+        price: 42,
+        category: 'leather',
+        description: 'Slim minimalist card wallet made from premium leather. Holds up to 8 cards.',
+        features: ['Full-grain leather', 'Hand-burnished edges', '4 card slots', 'Center cash pocket'],
+        icon: `<svg class="w-full h-full" viewBox="0 0 100 100" fill="none"><rect x="20" y="30" width="60" height="40" rx="4" fill="#F5EBE0" stroke="#8B7355" stroke-width="2"/><rect x="25" y="36" width="30" height="8" rx="2" fill="#E8DDD4"/><rect x="25" y="48" width="50" height="6" rx="1" fill="#E8DDD4"/><rect x="25" y="58" width="50" height="6" rx="1" fill="#E8DDD4"/></svg>`
+      }
+    ];
+
+    // Application state
+    let orders = [];
+    let currentProduct = null;
+    let orderQuantity = 1;
+    let currentFilter = 'all';
+
+    // Default configuration
+    const defaultConfig = {
+      store_name: 'Artisan & Co.',
+      store_tagline: 'Discover unique handmade treasures crafted by skilled artisans. Each piece tells a story of passion and creativity.',
+      contact_email: 'hello@artisanstore.com',
+      contact_phone: '+1 (555) 123-4567',
+      background_color: '#FDF8F3',
+      surface_color: '#F5EBE0',
+      text_color: '#4A3F35',
+      primary_action_color: '#8B7355',
+      secondary_text_color: '#6B5D4D',
+      font_family: 'Playfair Display',
+      font_size: 16
+    };
+
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          applyConfig(config);
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => window.elementSdk.setConfig({ background_color: value })
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => window.elementSdk.setConfig({ surface_color: value })
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => window.elementSdk.setConfig({ text_color: value })
+            },
+            {
+              get: () => config.primary_action_color || defaultConfig.primary_action_color,
+              set: (value) => window.elementSdk.setConfig({ primary_action_color: value })
+            },
+            {
+              get: () => config.secondary_text_color || defaultConfig.secondary_text_color,
+              set: (value) => window.elementSdk.setConfig({ secondary_text_color: value })
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => window.elementSdk.setConfig({ font_family: value })
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => window.elementSdk.setConfig({ font_size: value })
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['store_name', config.store_name || defaultConfig.store_name],
+          ['store_tagline', config.store_tagline || defaultConfig.store_tagline],
+          ['contact_email', config.contact_email || defaultConfig.contact_email],
+          ['contact_phone', config.contact_phone || defaultConfig.contact_phone]
+        ])
+      });
+    }
+
+    // Apply configuration to UI
+    function applyConfig(config) {
+      const c = { ...defaultConfig, ...config };
+      
+      // Apply colors
+      document.getElementById('app').style.background = c.background_color;
+      
+      // Update store name across all locations
+      const storeNameElements = ['nav-store-name', 'hero-title', 'footer-store-name'];
+      storeNameElements.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = c.store_name;
+      });
+      
+      // Update tagline
+      const taglineEl = document.getElementById('hero-tagline');
+      if (taglineEl) taglineEl.textContent = c.store_tagline;
+      
+      // Update contact info
+      const emailDisplay = document.getElementById('contact-email-display');
+      const phoneDisplay = document.getElementById('contact-phone-display');
+      if (emailDisplay) emailDisplay.textContent = c.contact_email;
+      if (phoneDisplay) phoneDisplay.textContent = c.contact_phone;
+      
+      // Apply font
+      const fontStack = `${c.font_family}, serif`;
+      document.querySelectorAll('.font-display').forEach(el => {
+        el.style.fontFamily = fontStack;
+      });
+      
+      // Apply font size scaling
+      const baseSize = c.font_size;
+      document.querySelectorAll('h1').forEach(el => {
+        if (!el.classList.contains('font-display')) return;
+        el.style.fontSize = `${baseSize * 2.5}px`;
+      });
+      document.querySelectorAll('h2').forEach(el => {
+        el.style.fontSize = `${baseSize * 1.75}px`;
+      });
+      document.querySelectorAll('h3').forEach(el => {
+        el.style.fontSize = `${baseSize * 1.25}px`;
+      });
+      
+      // Re-render dynamic content with new colors
+      renderFeaturedProducts();
+      renderProducts();
+      renderOrders();
+    }
+
+    // Initialize Data SDK
+    const dataHandler = {
+      onDataChanged(data) {
+        orders = data;
+        renderOrders();
+      }
+    };
+
+    async function initDataSdk() {
+      if (window.dataSdk) {
+        const result = await window.dataSdk.init(dataHandler);
+        if (!result.isOk) {
+          console.error('Failed to initialize Data SDK');
+        }
+      }
+    }
+
+    initDataSdk();
+
+    // Navigation
+    function navigateTo(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+      document.getElementById(`page-${page}`).classList.remove('hidden');
+      window.scrollTo(0, 0);
+      
+      // Update nav link styles
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.style.color = '#6B5D4D';
+      });
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Products
+    function renderFeaturedProducts() {
+      const container = document.getElementById('featured-products');
+      const featured = products.slice(0, 3);
+      const config = window.elementSdk?.config || defaultConfig;
+      
+      container.innerHTML = featured.map((product, index) => `
+        <div class="product-card rounded-2xl overflow-hidden shadow-lg cursor-pointer animate-fade-in stagger-${index + 1}" onclick="openProductModal('${product.id}')" style="background: ${config.surface_color || defaultConfig.surface_color};">
+          <div class="aspect-square p-8 flex items-center justify-center" style="background: ${config.background_color || defaultConfig.background_color};">
+            ${product.icon}
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-lg font-semibold mb-2" style="color: ${config.text_color || defaultConfig.text_color};">${product.name}</h3>
+            <p class="text-2xl font-bold" style="color: ${config.primary_action_color || defaultConfig.primary_action_color};">$${product.price}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderProducts() {
+      const container = document.getElementById('products-grid');
+      const config = window.elementSdk?.config || defaultConfig;
+      const filtered = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter);
+      
+      container.innerHTML = filtered.map((product, index) => `
+        <div class="product-card rounded-2xl overflow-hidden shadow-lg cursor-pointer animate-fade-in" style="animation-delay: ${index * 0.1}s; background: ${config.surface_color || defaultConfig.surface_color};">
+          <div class="aspect-square p-8 flex items-center justify-center" onclick="openProductModal('${product.id}')" style="background: ${config.background_color || defaultConfig.background_color};">
+            ${product.icon}
+          </div>
+          <div class="p-6">
+            <span class="text-xs uppercase tracking-wider font-medium" style="color: ${config.secondary_text_color || defaultConfig.secondary_text_color};">${product.category}</span>
+            <h3 class="font-display text-lg font-semibold mt-2 mb-2 cursor-pointer hover:underline" onclick="openProductModal('${product.id}')" style="color: ${config.text_color || defaultConfig.text_color};">${product.name}</h3>
+            <p class="text-sm mb-4 line-clamp-2" style="color: ${config.secondary_text_color || defaultConfig.secondary_text_color};">${product.description}</p>
+            <div class="flex items-center justify-between">
+              <span class="text-2xl font-bold" style="color: ${config.primary_action_color || defaultConfig.primary_action_color};">$${product.price}</span>
+              <button onclick="event.stopPropagation(); startOrder('${product.id}')" class="btn-primary px-4 py-2 rounded-full text-sm font-semibold" style="background: ${config.primary_action_color || defaultConfig.primary_action_color}; color: ${config.background_color || defaultConfig.background_color};">
+                Order Now
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      
+      // Update filter buttons
+      updateFilterButtons();
+    }
+
+    function filterProducts(category) {
+      currentFilter = category;
+      renderProducts();
+    }
+
+    function updateFilterButtons() {
+      const config = window.elementSdk?.config || defaultConfig;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        const isActive = btn.dataset.category === currentFilter;
+        btn.style.background = isActive ? (config.primary_action_color || defaultConfig.primary_action_color) : (config.surface_color || defaultConfig.surface_color);
+        btn.style.color = isActive ? (config.background_color || defaultConfig.background_color) : (config.secondary_text_color || defaultConfig.secondary_text_color);
+      });
+    }
+
+    function openProductModal(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+      
+      const config = window.elementSdk?.config || defaultConfig;
+      const modal = document.getElementById('product-modal');
+      const content = document.getElementById('product-modal-content');
+      
+      content.innerHTML = `
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="aspect-square rounded-2xl p-12 flex items-center justify-center" style="background: ${config.surface_color || defaultConfig.surface_color};">
+            ${product.icon}
+          </div>
+          <div>
+            <span class="text-sm uppercase tracking-wider font-medium" style="color: ${config.secondary_text_color || defaultConfig.secondary_text_color};">${product.category}</span>
+            <h1 class="font-display text-3xl font-bold mt-2 mb-4" style="color: ${config.text_color || defaultConfig.text_color};">${product.name}</h1>
+            <p class="text-3xl font-bold mb-6" style="color: ${config.primary_action_color || defaultConfig.primary_action_color};">$${product.price}</p>
+            <p class="text-lg mb-6 leading-relaxed" style="color: ${config.secondary_text_color || defaultConfig.secondary_text_color};">${product.description}</p>
+            <div class="mb-8">
+              <h3 class="font-display text-lg font-semibold mb-3" style="color: ${config.text_color || defaultConfig.text_color};">Features</h3>
+              <ul class="space-y-2">
+                ${product.features.map(f => `
+                  <li class="flex items-center gap-3">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="${config.primary_action_color || defaultConfig.primary_action_color}" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span style="color: ${config.secondary_text_color || defaultConfig.secondary_text_color};">${f}</span>
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+            <button onclick="closeProductModal(); startOrder('${product.id}')" class="btn-primary w-full py-4 rounded-full font-semibold text-lg" style="background: ${config.primary_action_color || defaultConfig.primary_action_color}; color: ${config.background_color || defaultConfig.background_color};">
+              Order This Item
+            </button>
+          </div>
+        </div>
+      `;
+      
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-modal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Order functionality
+    function startOrder(productId) {
+      currentProduct = products.find(p => p.id === productId);
+      orderQuantity = 1;
+      
+      if (!currentProduct) return;
+      
+      const config = window.elementSdk?.config || defaultConfig;
+      const summary = document.getElementById('order-product-summary');
+      
+      summary.innerHTML = `
+        <div class="flex items-center gap-4">
+          <div class="w-20 h-20 rounded-lg p-3 flex-shrink-0" style="background: ${config.background_color || defaultConfig.background_color};">
+            ${currentProduct.icon}
+          </div>
+          <div>
+            <h3 class="font-display text-lg font-semibold" style="color: ${config.text_color || defaultConfig.text_color};">${currentProduct.name}</h3>
+            <p class="text-xl font-bold" style="color: ${config.primary_action_color || defaultConfig.primary_action_color};">$${currentProduct.price} each</p>
+          </div>
+        </div>
+      `;
+      
+      updateOrderTotal();
+      
+      // Reset form
+      document.getElementById('order-form').reset();
+      document.getElementById('order-form').classList.remove('hidden');
+      document.getElementById('order-success').classList.add('hidden');
+      
+      navigateTo('order');
+    }
+
+    function updateQuantity(delta) {
+      orderQuantity = Math.max(1, Math.min(10, orderQuantity + delta));
+      document.getElementById('order-quantity').textContent = orderQuantity;
+      updateOrderTotal();
+    }
+
+    function updateOrderTotal() {
+      if (!currentProduct) return;
+      const total = currentProduct.price * orderQuantity;
+      document.getElementById('order-total').textContent = `$${total.toFixed(2)}`;
+    }
+
+    // Order form submission
+    document.getElementById('order-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      if (!currentProduct || !window.dataSdk) return;
+      
+      // Check limit
+      if (orders.length >= 999) {
+        showToast('Maximum order limit reached. Please contact support.', 'error');
+        return;
+      }
+      
+      const submitBtn = document.getElementById('submit-order-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Processing...';
+      
+      const orderData = {
+        order_id: `ORD-${Date.now()}`,
+        product_id: currentProduct.id,
+        product_name: currentProduct.name,
+        quantity: orderQuantity,
+        customer_name: document.getElementById('customer-name').value,
+        customer_email: document.getElementById('customer-email').value,
+        customer_address: document.getElementById('customer-address').value,
+        order_notes: document.getElementById('order-notes').value || '',
+        total_price: currentProduct.price * orderQuantity,
+        order_date: new Date().toISOString(),
+        status: 'pending'
+      };
+      
+      const result = await window.dataSdk.create(orderData);
+      
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Place Order';
+      
+      if (result.isOk) {
+        document.getElementById('order-form').classList.add('hidden');
+        document.getElementById('order-success').classList.remove('hidden');
+      } else {
+        showToast('Failed to place order. Please try again.', 'error');
+      }
+    });
+
+    // Orders list
+    function renderOrders() {
+      const container = document.getElementById('orders-list');
+      const noOrders = document.getElementById('no-orders');
+      const config = window.elementSdk?.config || defaultConfig;
+      
+      if (orders.length === 0) {
+        container.innerHTML = '';
+        noOrders.classList.remove('hidden');
+        return;
+      }
+      
+      noOrders.classList.add('hidden');
+      
+      // Sort orders by date, newest first
+      const sortedOrders = [...orders].sort((a, b) => new Date(b.order_date) - new Date(a.order_date));
+      
+      container.innerHTML = sortedOrders.map(order => {
+        const product = products.find(p => p.id === order.product_id);
+        const orderDate = new Date(order.order_date).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+        
+        return `
+          <div class="rounded-2xl p-6 shadow-lg animate-slide-in" style="background: ${config.surface_color || defaultConfig.surface_color};">
+            <div class="flex flex-col md:flex-row md:items-center gap-4">
+              <div class="w-16 h-16 rounded-lg p-3 flex-shrink-0" style="background: ${config.background_color || defaultConfig.background_color};">
+                ${product ? product.icon : '<span class="text-2xl">📦</span>'}
+              </div>
+              <div class="flex-grow">
+                <div class="flex flex-wrap items-center gap-2 mb-1">
+                  <h3 class="font-display text-lg font-semibold" style="color: ${config.text_color || defaultConfig.text_color};">${order.product_name}</h3>
+                  <span class="px-3 py-1 rounded-full text-xs font-medium capitalize" style="background: ${config.primary_action_color || defaultConfig.primary_action_color}20; color: ${config.primary_action_color || defaultConfig.primary_action_color};">${order.status}</span>
+                </div>
+                <p class="text-sm" style="color: ${config.secondary_text_color || defaultConfig.secondary_text_color};">
+                  Qty: ${order.quantity} • Ordered: ${orderDate}
+                </p>
+                <p class="text-sm" style="color: ${config.secondary_text_color || defaultConfig.secondary_text_color};">
+                  Ship to: ${order.customer_name}
+                </p>
+              </div>
+              <div class="text-right">
+                <p class="text-2xl font-bold" style="color: ${config.primary_action_color || defaultConfig.primary_action_color};">$${order.total_price.toFixed(2)}</p>
+                <p class="text-xs" style="color: ${config.secondary_text_color || defaultConfig.secondary_text_color};">${order.order_id}</p>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Contact form
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('contact-submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      
+      // Simulate sending
+      setTimeout(() => {
+        document.getElementById('contact-form').classList.add('hidden');
+        document.getElementById('contact-success').classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+      }, 1000);
+    });
+
+    // Toast notification
+    function showToast(message, type = 'info') {
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 animate-slide-in';
+      toast.style.background = type === 'error' ? '#EF4444' : '#8B7355';
+      toast.style.color = '#FDF8F3';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
+    }
+
+    // Initialize
+    renderFeaturedProducts();
+    renderProducts();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d6e55a1f7443d2c',t:'MTc3MjYwMDYwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
